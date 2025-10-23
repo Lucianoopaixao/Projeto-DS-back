@@ -1,19 +1,26 @@
 {
   "name": "projeto-ds-back",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend do projeto Saúde em Jogo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lucianoopaixao/Projeto-DS-back.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "express",
+    "mysql",
+    "backend",
+    "api",
+    "nodejs"
+  ],
+  "author": "Luciano Paixão",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Lucianoopaixao/Projeto-DS-back/issues"
   },
@@ -21,7 +28,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "mysql2": "^3.15.3",
+    "mysql2": "^3.15.3"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.10"
   }
 }
