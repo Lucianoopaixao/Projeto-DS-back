@@ -1,38 +1,28 @@
 import express from "express";
 import cors from "cors";
 import mysql from "mysql2";
+import pkg from "@prisma/client";
+const { PrismaClient } = pkg;
 
+//criando instancia prisma
+const prisma = new PrismaClient();
 //crinando a aplicação express
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-//conectando com o banco de dados mysql
-const db = mysql.createConnection({
-  host: "localhost", //no localhost
-  user: "root",
-  password: "", //n defini senha
-  database: "saudeemjogo",
-});
-
-//ver se vai funcionar esse db ne se n vou me matar
-db.connect((erro) => {
-  if (erro) {
-    console.error("Deu errado", erro);
-  } else {
-    console.log("Deu certo!");
-  }
-});
-
 //criando uma ROTA para o front requerir do back as perguntas do quiz
-app.get("/quiz", (req, res) => {
-  //funcao get
-  db.query("SELECT * FROM questoes", (erro, results) => {
-    if (erro) {
-      return res.status(500).json({ error: erro }); //retornando status 500(erro) se tudo der certo
-    }
+app.get("/quiz", async (req, res) => {
+  try {
+    const results = await Prisma.questoes.findMany();
     res.json(results);
-  });
+  } catch (erro) {
+    console.error("Deu erro", erro);
+    return res.status(500).json({
+      error: "Erro no servidor",
+      details: erro.message,
+    });
+  }
 });
 
 app.listen(3001, () =>

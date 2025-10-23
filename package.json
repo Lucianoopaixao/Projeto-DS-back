@@ -4,7 +4,10 @@
   "description": "Backend do projeto Saúde em Jogo",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "generate": "node -r dotenv/config node_modules/prisma/build/index.js generate",
+    "postinstall": "npm run generate",
+    "start": "node -r dotenv/config index.js",
+    "test": "echo  \"Error : no test specified\" && exit 1",
     "dev": "nodemon index.js"
   },
   "repository": {
@@ -26,11 +29,14 @@
   },
   "homepage": "https://github.com/Lucianoopaixao/Projeto-DS-back#readme",
   "dependencies": {
+    "@prisma/client": "^6.18.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "mysql2": "^3.15.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "prisma": "^6.18.0"
   }
 }
