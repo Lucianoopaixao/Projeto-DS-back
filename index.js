@@ -14,7 +14,7 @@ app.use(express.json());
 //criando uma ROTA para o front requerir do back as perguntas do quiz
 app.get("/quiz", async (req, res) => {
   try {
-    const results = await Prisma.questoes.findMany();
+    const results = await prisma.questoes.findMany();
     res.json(results);
   } catch (erro) {
     console.error("Deu erro", erro);
